@@ -15,15 +15,7 @@ public class ChatHub : Hub
     public async Task Register(string? preferredId = null)
     {
         string result = _userStore.RegisterUser(Context.ConnectionId, preferredId);
-        
-        if (result == "ERROR_TAKEN")
-        {
-            await Clients.Caller.SendAsync("Error", "This ID is already taken. Please try another one.");
-        }
-        else
-        {
-            await Clients.Caller.SendAsync("UserRegistered", result);
-        }
+        await Clients.Caller.SendAsync("UserRegistered", result);
     }
 
     public async Task ChangeId(string newId)

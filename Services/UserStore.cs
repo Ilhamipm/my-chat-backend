@@ -13,12 +13,8 @@ public class UserStore
     {
         string customId = preferredId ?? Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper();
         
-        // If preferred ID is taken, generate a new one
-        if (_users.ContainsKey(customId)) 
-        {
-            if (preferredId != null) return "ERROR_TAKEN";
-            customId = Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper();
-        }
+        // Allow overwriting if the user is re-registering with the same ID
+        // (prevents "ID already taken" on transient disconnects/refreshes)
 
         _users[customId] = connectionId;
         _connectionToUser[connectionId] = customId;

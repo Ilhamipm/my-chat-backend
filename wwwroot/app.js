@@ -1,5 +1,5 @@
 const isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1";
-const hubUrl = isLocalhost ? "/chatHub" : "https://my-chat-backend-production-f8f9.up.railway.app/chatHub";
+const hubUrl = isLocalhost ? "/chatHub" : "https://my-chat-backend-production-2b56.up.railway.app/chatHub";
 
 const connection = new signalR.HubConnectionBuilder()
     .withUrl(hubUrl)
