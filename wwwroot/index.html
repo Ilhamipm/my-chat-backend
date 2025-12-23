@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowChat - Premium Real-time Experience</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main id="app">
+        <!-- Auth Section -->
+        <section id="auth-section" class="card fade-in">
+            <h1>Glow<span>Chat</span></h1>
+            <p>Connect instantly with anyone using a unique ID.</p>
+            <div class="auth-actions">
+                <button id="btn-register" class="btn-primary">Get My ID</button>
+            </div>
+            <div id="registration-info" class="hidden">
+                <p>Your Unique ID:</p>
+                <div class="id-display" id="my-id">--------</div>
+                <button id="btn-enter-chat" class="btn-secondary">Enter Chat</button>
+            </div>
+        </section>
+
+        <!-- Chat Section -->
+        <section id="chat-section" class="card hidden">
+            <header class="chat-header">
+                <div class="user-info">
+                    <div class="avatar"></div>
+                    <div>
+                        <h2 id="display-id">ID: --------</h2>
+                        <span class="status-badge">Online</span>
+                    </div>
+                </div>
+                <button id="btn-logout" class="btn-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+                </button>
+            </header>
+
+            <div class="chat-container">
+                <div class="sidebar">
+                    <h3>Contact ID</h3>
+                    <div class="id-input-group">
+                        <input type="text" id="target-id" placeholder="Enter Friend's ID...">
+                    </div>
+                </div>
+                
+                <div class="chat-area">
+                    <div id="messages" class="messages-list">
+                        <div class="empty-state">
+                            <p>No messages yet. Start a conversation!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="input-area">
+                        <input type="text" id="message-input" placeholder="Type a message...">
+                        <button id="btn-send" class="btn-send">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

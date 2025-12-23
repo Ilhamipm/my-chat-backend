@@ -1,0 +1,1042 @@
+{
+  "Version": 1,
+  "Hash": "H3y+VkxOmMmUJwyX5qzeB9y2bv/EQIaPqSQkZqi1r+A=",
+  "Source": "ChatBackend",
+  "BasePath": "_content/ChatBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ChatBackend\\wwwroot",
+      "Source": "ChatBackend",
+      "ContentRoot": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\",
+      "BasePath": "_content/ChatBackend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\f5at2l2q9c-fhln50tc3a.gz",
+      "SourceId": "ChatBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ChatBackend",
+      "RelativePath": "index#[.{fingerprint=fhln50tc3a}]?.html.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\index.html",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "qzyl4lluhu",
+      "Integrity": "Zmw2PwmdMbUChBcuP6gGlwl1xkWhK/urgZ8c2SMIIbY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\index.html"
+    },
+    {
+      "Identity": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\gkh2lgyraw-xwxc9b48su.gz",
+      "SourceId": "ChatBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ChatBackend",
+      "RelativePath": "styles#[.{fingerprint=xwxc9b48su}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\styles.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "0mepzxghg6",
+      "Integrity": "yILiBb6nWu2UCNhnQX9bl0DqyJe/HO9vz//Ug2UQ2NE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\styles.css"
+    },
+    {
+      "Identity": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\m5qtxypxo3-gwssjpba25.gz",
+      "SourceId": "ChatBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ChatBackend",
+      "RelativePath": "app#[.{fingerprint=gwssjpba25}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\app.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "rh0c192cuc",
+      "Integrity": "ge22RqBz1ZiBGH6hkZ0ONLKZhM0EABfIr8HjLlTVX0o=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\app.js"
+    },
+    {
+      "Identity": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\app.js",
+      "SourceId": "ChatBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\",
+      "BasePath": "_content/ChatBackend",
+      "RelativePath": "app#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gwssjpba25",
+      "Integrity": "UKgfK4Etxgw83mPzr8M1ZkDltEJaNnPLMdXfTY8dQu0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.js"
+    },
+    {
+      "Identity": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\index.html",
+      "SourceId": "ChatBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\",
+      "BasePath": "_content/ChatBackend",
+      "RelativePath": "index#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "fhln50tc3a",
+      "Integrity": "fT50KOI+z7KbJdGFJqv+t/ZWoEx2oxJ8CFWAx2OOWcA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\styles.css",
+      "SourceId": "ChatBackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\",
+      "BasePath": "_content/ChatBackend",
+      "RelativePath": "styles#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "xwxc9b48su",
+      "Integrity": "sSsHd2oskF55mVe0JzVuzsNayNz3CBMLbmJJ/EsG4fE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\styles.css"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "app.gwssjpba25.js",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\m5qtxypxo3-gwssjpba25.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000934579439"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1069"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ge22RqBz1ZiBGH6hkZ0ONLKZhM0EABfIr8HjLlTVX0o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:44:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"UKgfK4Etxgw83mPzr8M1ZkDltEJaNnPLMdXfTY8dQu0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gwssjpba25"
+        },
+        {
+          "Name": "label",
+          "Value": "app.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UKgfK4Etxgw83mPzr8M1ZkDltEJaNnPLMdXfTY8dQu0="
+        }
+      ]
+    },
+    {
+      "Route": "app.gwssjpba25.js",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\app.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3199"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UKgfK4Etxgw83mPzr8M1ZkDltEJaNnPLMdXfTY8dQu0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:44:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gwssjpba25"
+        },
+        {
+          "Name": "label",
+          "Value": "app.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UKgfK4Etxgw83mPzr8M1ZkDltEJaNnPLMdXfTY8dQu0="
+        }
+      ]
+    },
+    {
+      "Route": "app.gwssjpba25.js.gz",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\m5qtxypxo3-gwssjpba25.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1069"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ge22RqBz1ZiBGH6hkZ0ONLKZhM0EABfIr8HjLlTVX0o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:44:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gwssjpba25"
+        },
+        {
+          "Name": "label",
+          "Value": "app.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ge22RqBz1ZiBGH6hkZ0ONLKZhM0EABfIr8HjLlTVX0o="
+        }
+      ]
+    },
+    {
+      "Route": "app.js",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\m5qtxypxo3-gwssjpba25.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000934579439"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1069"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ge22RqBz1ZiBGH6hkZ0ONLKZhM0EABfIr8HjLlTVX0o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:44:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"UKgfK4Etxgw83mPzr8M1ZkDltEJaNnPLMdXfTY8dQu0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UKgfK4Etxgw83mPzr8M1ZkDltEJaNnPLMdXfTY8dQu0="
+        }
+      ]
+    },
+    {
+      "Route": "app.js",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\app.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3199"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UKgfK4Etxgw83mPzr8M1ZkDltEJaNnPLMdXfTY8dQu0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:44:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UKgfK4Etxgw83mPzr8M1ZkDltEJaNnPLMdXfTY8dQu0="
+        }
+      ]
+    },
+    {
+      "Route": "app.js.gz",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\m5qtxypxo3-gwssjpba25.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1069"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ge22RqBz1ZiBGH6hkZ0ONLKZhM0EABfIr8HjLlTVX0o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:44:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ge22RqBz1ZiBGH6hkZ0ONLKZhM0EABfIr8HjLlTVX0o="
+        }
+      ]
+    },
+    {
+      "Route": "index.fhln50tc3a.html",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\f5at2l2q9c-fhln50tc3a.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000889679715"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1123"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zmw2PwmdMbUChBcuP6gGlwl1xkWhK/urgZ8c2SMIIbY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:42:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"fT50KOI+z7KbJdGFJqv+t/ZWoEx2oxJ8CFWAx2OOWcA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fhln50tc3a"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fT50KOI+z7KbJdGFJqv+t/ZWoEx2oxJ8CFWAx2OOWcA="
+        }
+      ]
+    },
+    {
+      "Route": "index.fhln50tc3a.html",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3286"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fT50KOI+z7KbJdGFJqv+t/ZWoEx2oxJ8CFWAx2OOWcA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:42:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fhln50tc3a"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fT50KOI+z7KbJdGFJqv+t/ZWoEx2oxJ8CFWAx2OOWcA="
+        }
+      ]
+    },
+    {
+      "Route": "index.fhln50tc3a.html.gz",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\f5at2l2q9c-fhln50tc3a.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1123"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zmw2PwmdMbUChBcuP6gGlwl1xkWhK/urgZ8c2SMIIbY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:42:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fhln50tc3a"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zmw2PwmdMbUChBcuP6gGlwl1xkWhK/urgZ8c2SMIIbY="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\f5at2l2q9c-fhln50tc3a.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000889679715"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1123"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zmw2PwmdMbUChBcuP6gGlwl1xkWhK/urgZ8c2SMIIbY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:42:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"fT50KOI+z7KbJdGFJqv+t/ZWoEx2oxJ8CFWAx2OOWcA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-fT50KOI+z7KbJdGFJqv+t/ZWoEx2oxJ8CFWAx2OOWcA="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3286"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fT50KOI+z7KbJdGFJqv+t/ZWoEx2oxJ8CFWAx2OOWcA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:42:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-fT50KOI+z7KbJdGFJqv+t/ZWoEx2oxJ8CFWAx2OOWcA="
+        }
+      ]
+    },
+    {
+      "Route": "index.html.gz",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\f5at2l2q9c-fhln50tc3a.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1123"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zmw2PwmdMbUChBcuP6gGlwl1xkWhK/urgZ8c2SMIIbY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:42:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zmw2PwmdMbUChBcuP6gGlwl1xkWhK/urgZ8c2SMIIbY="
+        }
+      ]
+    },
+    {
+      "Route": "styles.css",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\gkh2lgyraw-xwxc9b48su.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000616522811"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1621"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yILiBb6nWu2UCNhnQX9bl0DqyJe/HO9vz//Ug2UQ2NE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:43:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"sSsHd2oskF55mVe0JzVuzsNayNz3CBMLbmJJ/EsG4fE=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-sSsHd2oskF55mVe0JzVuzsNayNz3CBMLbmJJ/EsG4fE="
+        }
+      ]
+    },
+    {
+      "Route": "styles.css",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5528"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sSsHd2oskF55mVe0JzVuzsNayNz3CBMLbmJJ/EsG4fE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:43:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-sSsHd2oskF55mVe0JzVuzsNayNz3CBMLbmJJ/EsG4fE="
+        }
+      ]
+    },
+    {
+      "Route": "styles.css.gz",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\gkh2lgyraw-xwxc9b48su.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1621"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yILiBb6nWu2UCNhnQX9bl0DqyJe/HO9vz//Ug2UQ2NE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:43:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yILiBb6nWu2UCNhnQX9bl0DqyJe/HO9vz//Ug2UQ2NE="
+        }
+      ]
+    },
+    {
+      "Route": "styles.xwxc9b48su.css",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\gkh2lgyraw-xwxc9b48su.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000616522811"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1621"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yILiBb6nWu2UCNhnQX9bl0DqyJe/HO9vz//Ug2UQ2NE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:43:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"sSsHd2oskF55mVe0JzVuzsNayNz3CBMLbmJJ/EsG4fE=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xwxc9b48su"
+        },
+        {
+          "Name": "label",
+          "Value": "styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-sSsHd2oskF55mVe0JzVuzsNayNz3CBMLbmJJ/EsG4fE="
+        }
+      ]
+    },
+    {
+      "Route": "styles.xwxc9b48su.css",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\wwwroot\\styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5528"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sSsHd2oskF55mVe0JzVuzsNayNz3CBMLbmJJ/EsG4fE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:43:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xwxc9b48su"
+        },
+        {
+          "Name": "label",
+          "Value": "styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-sSsHd2oskF55mVe0JzVuzsNayNz3CBMLbmJJ/EsG4fE="
+        }
+      ]
+    },
+    {
+      "Route": "styles.xwxc9b48su.css.gz",
+      "AssetFile": "D:\\Active\\Game Creator\\Google Antigravity\\Belajar 2\\Backend\\obj\\Debug\\net9.0\\compressed\\gkh2lgyraw-xwxc9b48su.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1621"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yILiBb6nWu2UCNhnQX9bl0DqyJe/HO9vz//Ug2UQ2NE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Dec 2025 18:43:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xwxc9b48su"
+        },
+        {
+          "Name": "label",
+          "Value": "styles.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yILiBb6nWu2UCNhnQX9bl0DqyJe/HO9vz//Ug2UQ2NE="
+        }
+      ]
+    }
+  ]
+}
