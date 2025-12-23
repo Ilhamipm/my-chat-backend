@@ -1,7 +1,12 @@
+const isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+const hubUrl = isLocalhost ? "/chatHub" : "https://my-chat-backend-production-f8f9.up.railway.app/chatHub";
+
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub") // Relative path when served from same host
+    .withUrl(hubUrl)
     .withAutomaticReconnect()
     .build();
+
+const STORAGE_KEY = 'glowme_user_id';
 
 const authSection = document.getElementById('auth-section');
 const chatSection = document.getElementById('chat-section');
@@ -15,12 +20,14 @@ const messageInput = document.getElementById('message-input');
 const targetIdInput = document.getElementById('target-id');
 const btnSend = document.getElementById('btn-send');
 const btnLogout = document.getElementById('btn-logout');
+const btnEditId = document.getElementById('btn-edit-id');
 
 let myId = null;
 
 // SignalR Events
 connection.on("UserRegistered", (id) => {
     myId = id;
+    localStorage.setItem(STORAGE_KEY, id); // Simpan ID agar tetap sama besok
     myIdDisplay.textContent = id;
     displayIdHead.textContent = `ID: ${id}`;
     btnRegister.classList.add('hidden');
@@ -41,12 +48,40 @@ btnRegister.onclick = async () => {
         if (connection.state === signalR.HubConnectionState.Disconnected) {
             await connection.start();
         }
-        await connection.invoke("Register");
+        const savedId = localStorage.getItem(STORAGE_KEY);
+        await connection.invoke("Register", savedId);
     } catch (err) {
         console.error("Connection failed: ", err);
         alert("Failed to connect to server. Make sure the backend is running.");
     }
 };
+
+btnEditId.onclick = async () => {
+    const newId = prompt("Enter your new custom ID (max 20 chars):", myId);
+    if (newId && newId !== myId) {
+        try {
+            await connection.invoke("ChangeId", newId);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+};
+
+// Auto-start if we have a saved ID
+(async () => {
+    const savedId = localStorage.getItem(STORAGE_KEY);
+    if (savedId) {
+        try {
+            await connection.start();
+            await connection.invoke("Register", savedId);
+            // Auto enter chat if we were already registered
+            authSection.classList.add('hidden');
+            chatSection.classList.remove('hidden');
+        } catch (err) {
+            console.warn("Auto-reconnect failed:", err);
+        }
+    }
+})();
 
 btnEnterChat.onclick = () => {
     authSection.classList.add('hidden');

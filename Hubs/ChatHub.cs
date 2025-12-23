@@ -12,10 +12,37 @@ public class ChatHub : Hub
         _userStore = userStore;
     }
 
-    public async Task Register()
+    public async Task Register(string? preferredId = null)
     {
-        string customId = _userStore.RegisterUser(Context.ConnectionId);
-        await Clients.Caller.SendAsync("UserRegistered", customId);
+        string result = _userStore.RegisterUser(Context.ConnectionId, preferredId);
+        
+        if (result == "ERROR_TAKEN")
+        {
+            await Clients.Caller.SendAsync("Error", "This ID is already taken. Please try another one.");
+        }
+        else
+        {
+            await Clients.Caller.SendAsync("UserRegistered", result);
+        }
+    }
+
+    public async Task ChangeId(string newId)
+    {
+        if (string.IsNullOrWhiteSpace(newId) || newId.Length > 20)
+        {
+            await Clients.Caller.SendAsync("Error", "Invalid ID. Use 1-20 characters.");
+            return;
+        }
+
+        bool success = _userStore.ChangeId(Context.ConnectionId, newId);
+        if (success)
+        {
+            await Clients.Caller.SendAsync("UserRegistered", newId);
+        }
+        else
+        {
+            await Clients.Caller.SendAsync("Error", "This ID is already taken.");
+        }
     }
 
     public async Task SendMessageToId(string targetId, string message)
