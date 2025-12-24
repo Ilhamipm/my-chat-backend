@@ -6,16 +6,19 @@ namespace ChatBackend.Hubs;
 public class ChatHub : Hub
 {
     private readonly UserStore _userStore;
+    private readonly MessageService _messageService;
 
-    public ChatHub(UserStore userStore)
+    public ChatHub(UserStore userStore, MessageService messageService)
     {
         _userStore = userStore;
+        _messageService = messageService;
     }
 
     public async Task Register(string? preferredId = null)
     {
         string result = _userStore.RegisterUser(Context.ConnectionId, preferredId);
         await Clients.Caller.SendAsync("UserRegistered", result);
+        await SendUnreadMessages(result);
     }
 
     public async Task ChangeId(string newId)
@@ -30,6 +33,7 @@ public class ChatHub : Hub
         if (success)
         {
             await Clients.Caller.SendAsync("UserRegistered", newId);
+            await SendUnreadMessages(newId);
         }
         else
         {
@@ -46,9 +50,24 @@ public class ChatHub : Hub
         {
             await Clients.Client(targetConnectionId).SendAsync("ReceiveMessage", senderId, message);
         }
+        else if (senderId != null)
+        {
+            _messageService.SaveUnreadMessage(targetId, senderId, message);
+            await Clients.Caller.SendAsync("Error", $"ID {targetId} sedang offline. Pesan Anda telah disimpan dan akan disampaikan saat dia online.");
+        }
         else
         {
-            await Clients.Caller.SendAsync("Error", "Target ID not found or registration required.");
+            await Clients.Caller.SendAsync("Error", "Gagal mengirim pesan. Silakan coba lagi.");
+        }
+    }
+
+    private async Task SendUnreadMessages(string userId)
+    {
+        var unread = _messageService.RetrieveAndMoveUnreadMessages(userId);
+        foreach (var msg in unread)
+        {
+            // We use the same method to receive messages as live messages
+            await Clients.Caller.SendAsync("ReceiveMessage", (string)msg.SenderId, (string)msg.Message);
         }
     }
 
