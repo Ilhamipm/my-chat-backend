@@ -7,18 +7,20 @@ public class ChatHub : Hub
 {
     private readonly UserStore _userStore;
     private readonly MessageService _messageService;
+    private readonly MatchmakingService _matchmakingService;
 
-    public ChatHub(UserStore userStore, MessageService messageService)
+    public ChatHub(UserStore userStore, MessageService messageService, MatchmakingService matchmakingService)
     {
         _userStore = userStore;
         _messageService = messageService;
+        _matchmakingService = matchmakingService;
     }
 
     public async Task Register(string? preferredId = null)
     {
         string result = _userStore.RegisterUser(Context.ConnectionId, preferredId);
         await Clients.Caller.SendAsync("UserRegistered", result);
-        await SendUnreadMessages(result);
+        await NotifyUnreadCount(result);
     }
 
     public async Task ChangeId(string newId)
@@ -33,7 +35,7 @@ public class ChatHub : Hub
         if (success)
         {
             await Clients.Caller.SendAsync("UserRegistered", newId);
-            await SendUnreadMessages(newId);
+            await NotifyUnreadCount(newId);
         }
         else
         {
@@ -61,6 +63,26 @@ public class ChatHub : Hub
         }
     }
 
+    public async Task FetchUnreadMessages()
+    {
+        string? userId = _userStore.GetCustomId(Context.ConnectionId);
+        if (userId != null)
+        {
+            await SendUnreadMessages(userId);
+            // After fetching, notify with 0 unread
+            await Clients.Caller.SendAsync("UnreadNotification", 0);
+        }
+    }
+
+    private async Task NotifyUnreadCount(string userId)
+    {
+        int count = _messageService.CountUnreadMessages(userId);
+        if (count > 0)
+        {
+            await Clients.Caller.SendAsync("UnreadNotification", count);
+        }
+    }
+
     private async Task SendUnreadMessages(string userId)
     {
         var unread = _messageService.RetrieveAndMoveUnreadMessages(userId);
@@ -71,8 +93,58 @@ public class ChatHub : Hub
         }
     }
 
+    public async Task FindMatch()
+    {
+        string? userId = _userStore.GetCustomId(Context.ConnectionId);
+        if (userId == null) return;
+
+        bool joined = _matchmakingService.JoinQueue(Context.ConnectionId);
+        if (joined)
+        {
+            await Clients.Caller.SendAsync("WaitingForMatch");
+            var (p1, p2) = _matchmakingService.TryMatch();
+            if (p1 != null && p2 != null)
+            {
+                await Clients.Clients(p1, p2).SendAsync("MatchFound");
+            }
+        }
+    }
+
+    public async Task SetRolePreference(bool wantControl)
+    {
+        _matchmakingService.SetPreference(Context.ConnectionId, wantControl);
+        string? opponent = _matchmakingService.GetOpponent(Context.ConnectionId);
+        
+        if (opponent != null)
+        {
+            // If both set preference, resolve roles
+            var (controller, follower) = _matchmakingService.ResolveRoles(Context.ConnectionId, opponent);
+            await Clients.Client(controller).SendAsync("RoleAssigned", true);
+            await Clients.Client(follower).SendAsync("RoleAssigned", false);
+        }
+    }
+
+    public async Task StartGame()
+    {
+        string? opponent = _matchmakingService.GetOpponent(Context.ConnectionId);
+        if (opponent != null)
+        {
+            await Clients.Clients(Context.ConnectionId, opponent).SendAsync("GameStarted");
+        }
+    }
+
+    public async Task UpdateBallSpeed(float speed)
+    {
+        string? opponent = _matchmakingService.GetOpponent(Context.ConnectionId);
+        if (opponent != null)
+        {
+            await Clients.Client(opponent).SendAsync("BallSpeedUpdated", speed);
+        }
+    }
+
     public override async Task OnDisconnectedAsync(Exception? exception)
     {
+        _matchmakingService.RemoveUser(Context.ConnectionId);
         _userStore.RemoveUser(Context.ConnectionId);
         await base.OnDisconnectedAsync(exception);
     }

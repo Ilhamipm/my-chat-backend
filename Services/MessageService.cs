@@ -15,6 +15,13 @@ public class MessageService
         }
     }
 
+    public int CountUnreadMessages(string userId)
+    {
+        string unreadPath = Path.Combine(_basePath, userId, "unread");
+        if (!Directory.Exists(unreadPath)) return 0;
+        return Directory.GetFiles(unreadPath, "*.json").Length;
+    }
+
     public void SaveUnreadMessage(string targetId, string senderId, string message)
     {
         string unreadPath = Path.Combine(_basePath, targetId, "unread");

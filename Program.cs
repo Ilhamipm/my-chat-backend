@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSignalR();
 builder.Services.AddSingleton<UserStore>();
 builder.Services.AddSingleton<MessageService>();
+builder.Services.AddSingleton<MatchmakingService>();
 
 builder.Services.AddCors(options =>
 {
