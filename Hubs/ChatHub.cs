@@ -107,12 +107,14 @@ public class ChatHub : Hub
             await Clients.Client(Context.ConnectionId).SendAsync("MatchFound", result.PartnerId, result.Session.ControllerId == Context.ConnectionId);
             await Clients.Client(result.PartnerId).SendAsync("MatchFound", Context.ConnectionId, result.Session.ControllerId == result.PartnerId);
         }
+        await BroadcastOnlineUsers();
     }
 
     public async Task LeaveMatchmaking()
     {
         _matchmakingService.RemoveFromQueue(Context.ConnectionId);
         await Clients.Caller.SendAsync("MatchmakingStatus", "Idle");
+        await BroadcastOnlineUsers();
     }
 
     public async Task StartGame()
@@ -122,6 +124,19 @@ public class ChatHub : Hub
         {
             await Clients.Client(session.User1).SendAsync("GameStart");
             await Clients.Client(session.User2).SendAsync("GameStart");
+            await BroadcastOnlineUsers();
+        }
+    }
+
+    public async Task QuitGame()
+    {
+        var session = _matchmakingService.GetSession(Context.ConnectionId);
+        if (session != null)
+        {
+            var partnerId = session.User1 == Context.ConnectionId ? session.User2 : session.User1;
+            await Clients.Client(partnerId).SendAsync("PartnerDisconnected");
+            _matchmakingService.EndSession(Context.ConnectionId);
+            await BroadcastOnlineUsers();
         }
     }
 
@@ -151,7 +166,12 @@ public class ChatHub : Hub
 
     private async Task BroadcastOnlineUsers()
     {
-        var users = _userStore.GetAllCustomIds();
-        await Clients.All.SendAsync("UpdateOnlineUsers", users);
+        var allUsers = _userStore.GetAllUsers();
+        var userStatuses = allUsers.Select(u => new {
+            Id = u.CustomId,
+            Status = _matchmakingService.GetUserStatus(u.ConnectionId)
+        }).ToList();
+        
+        await Clients.All.SendAsync("UpdateOnlineUsers", userStatuses);
     }
 }

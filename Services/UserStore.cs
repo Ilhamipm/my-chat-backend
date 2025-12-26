@@ -57,4 +57,9 @@ public class UserStore
             _users.TryRemove(customId, out _);
         }
     }
+
+    public List<(string CustomId, string ConnectionId)> GetAllUsers()
+    {
+        return _users.Select(u => (u.Key, u.Value)).ToList();
+    }
 }

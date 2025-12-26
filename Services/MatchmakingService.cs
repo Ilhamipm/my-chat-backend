@@ -54,6 +54,15 @@ public class MatchmakingService
             _activeSessions.TryRemove(session.User1 == connectionId ? session.User2 : session.User1, out _);
         }
     }
+
+    public string GetUserStatus(string connectionId)
+    {
+        if (_activeSessions.ContainsKey(connectionId))
+            return "Playing";
+        if (_queue.Contains(connectionId))
+            return "Matchmaking";
+        return "Idle";
+    }
 }
 
 public class MatchmakingResult
