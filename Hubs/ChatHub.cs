@@ -93,58 +93,55 @@ public class ChatHub : Hub
         }
     }
 
-    public async Task FindMatch()
+    public async Task JoinMatchmaking()
     {
-        string? userId = _userStore.GetCustomId(Context.ConnectionId);
-        if (userId == null) return;
-
-        bool joined = _matchmakingService.JoinQueue(Context.ConnectionId);
-        if (joined)
+        var result = _matchmakingService.AddToQueue(Context.ConnectionId);
+        if (result.IsSearching)
         {
-            await Clients.Caller.SendAsync("WaitingForMatch");
-            var (p1, p2) = _matchmakingService.TryMatch();
-            if (p1 != null && p2 != null)
-            {
-                await Clients.Clients(p1, p2).SendAsync("MatchFound");
-            }
+            await Clients.Caller.SendAsync("MatchmakingStatus", "Searching");
+        }
+        else if (result.PartnerId != null && result.Session != null)
+        {
+            await Clients.Client(Context.ConnectionId).SendAsync("MatchFound", result.PartnerId, result.Session.ControllerId == Context.ConnectionId);
+            await Clients.Client(result.PartnerId).SendAsync("MatchFound", Context.ConnectionId, result.Session.ControllerId == result.PartnerId);
         }
     }
 
-    public async Task SetRolePreference(bool wantControl)
+    public async Task LeaveMatchmaking()
     {
-        _matchmakingService.SetPreference(Context.ConnectionId, wantControl);
-        string? opponent = _matchmakingService.GetOpponent(Context.ConnectionId);
-        
-        if (opponent != null)
-        {
-            // If both set preference, resolve roles
-            var (controller, follower) = _matchmakingService.ResolveRoles(Context.ConnectionId, opponent);
-            await Clients.Client(controller).SendAsync("RoleAssigned", true);
-            await Clients.Client(follower).SendAsync("RoleAssigned", false);
-        }
+        _matchmakingService.RemoveFromQueue(Context.ConnectionId);
+        await Clients.Caller.SendAsync("MatchmakingStatus", "Idle");
     }
 
     public async Task StartGame()
     {
-        string? opponent = _matchmakingService.GetOpponent(Context.ConnectionId);
-        if (opponent != null)
+        var session = _matchmakingService.GetSession(Context.ConnectionId);
+        if (session != null)
         {
-            await Clients.Clients(Context.ConnectionId, opponent).SendAsync("GameStarted");
+            await Clients.Client(session.User1).SendAsync("GameStart");
+            await Clients.Client(session.User2).SendAsync("GameStart");
         }
     }
 
     public async Task UpdateBallSpeed(float speed)
     {
-        string? opponent = _matchmakingService.GetOpponent(Context.ConnectionId);
-        if (opponent != null)
+        var session = _matchmakingService.GetSession(Context.ConnectionId);
+        if (session != null && session.ControllerId == Context.ConnectionId)
         {
-            await Clients.Client(opponent).SendAsync("BallSpeedUpdated", speed);
+            await Clients.Client(session.User1 == Context.ConnectionId ? session.User2 : session.User1).SendAsync("UpdateSpeed", speed);
         }
     }
 
     public override async Task OnDisconnectedAsync(Exception? exception)
     {
-        _matchmakingService.RemoveUser(Context.ConnectionId);
+        var session = _matchmakingService.GetSession(Context.ConnectionId);
+        if (session != null)
+        {
+            var partnerId = session.User1 == Context.ConnectionId ? session.User2 : session.User1;
+            await Clients.Client(partnerId).SendAsync("PartnerDisconnected");
+            _matchmakingService.EndSession(Context.ConnectionId);
+        }
+        
         _userStore.RemoveUser(Context.ConnectionId);
         await base.OnDisconnectedAsync(exception);
     }

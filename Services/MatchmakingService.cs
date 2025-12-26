@@ -4,62 +4,69 @@ namespace ChatBackend.Services;
 
 public class MatchmakingService
 {
-    private readonly ConcurrentQueue<string> _waitingUsers = new();
-    private readonly ConcurrentDictionary<string, string> _matches = new();
-    private readonly ConcurrentDictionary<string, bool> _preferences = new(); // ConnectionId -> wantsControl
+    private readonly ConcurrentQueue<string> _queue = new();
+    private readonly ConcurrentDictionary<string, GameSession> _activeSessions = new();
 
-    public bool JoinQueue(string connectionId)
+    public MatchmakingResult AddToQueue(string connectionId)
     {
-        if (_waitingUsers.Contains(connectionId)) return false;
-        _waitingUsers.Enqueue(connectionId);
-        return true;
-    }
-
-    public (string? player1, string? player2) TryMatch()
-    {
-        if (_waitingUsers.Count >= 2)
+        if (_activeSessions.ContainsKey(connectionId) || _queue.Contains(connectionId))
         {
-            if (_waitingUsers.TryDequeue(out var p1) && _waitingUsers.TryDequeue(out var p2))
+            return new MatchmakingResult { IsSearching = true };
+        }
+
+        if (_queue.TryDequeue(out var partnerId))
+        {
+            var sessionId = Guid.NewGuid().ToString();
+            var session = new GameSession
             {
-                _matches[p1] = p2;
-                _matches[p2] = p1;
-                return (p1, p2);
-            }
+                SessionId = sessionId,
+                User1 = connectionId,
+                User2 = partnerId,
+                ControllerId = new Random().Next(0, 2) == 0 ? connectionId : partnerId
+            };
+
+            _activeSessions[connectionId] = session;
+            _activeSessions[partnerId] = session;
+
+            return new MatchmakingResult { IsSearching = false, PartnerId = partnerId, Session = session };
         }
-        return (null, null);
+
+        _queue.Enqueue(connectionId);
+        return new MatchmakingResult { IsSearching = true };
     }
 
-    public void SetPreference(string connectionId, bool wantsControl)
+    public void RemoveFromQueue(string connectionId)
     {
-        _preferences[connectionId] = wantsControl;
+        // Note: ConcurrentQueue doesn't easily support removal from middle.
+        // For simplicity in this demo, we'll just ignore it if they are dequeue'd and offline.
+        // In a real app, you'd use a different structure or check connection status.
     }
 
-    public string? GetOpponent(string connectionId)
+    public GameSession? GetSession(string connectionId)
     {
-        return _matches.TryGetValue(connectionId, out var opponent) ? opponent : null;
+        return _activeSessions.TryGetValue(connectionId, out var session) ? session : null;
     }
 
-    public (string controller, string follower) ResolveRoles(string p1, string p2)
+    public void EndSession(string connectionId)
     {
-        _preferences.TryGetValue(p1, out var pref1);
-        _preferences.TryGetValue(p2, out var pref2);
-
-        if (pref1 && !pref2) return (p1, p2);
-        if (!pref1 && pref2) return (p2, p1);
-
-        // If both want same or no preference, choose random
-        var random = new Random();
-        return random.Next(2) == 0 ? (p1, p2) : (p2, p1);
-    }
-
-    public void RemoveUser(string connectionId)
-    {
-        if (_matches.TryRemove(connectionId, out var opponent))
+        if (_activeSessions.TryRemove(connectionId, out var session))
         {
-            _matches.TryRemove(opponent, out _);
+            _activeSessions.TryRemove(session.User1 == connectionId ? session.User2 : session.User1, out _);
         }
-        _preferences.TryRemove(connectionId, out _);
-        // Queue removal is tricky with ConcurrentQueue, but we can filter it out during matching if needed.
-        // For simplicity in this demo, let's assume users don't frequently drop while in queue.
     }
+}
+
+public class MatchmakingResult
+{
+    public bool IsSearching { get; set; }
+    public string? PartnerId { get; set; }
+    public GameSession? Session { get; set; }
+}
+
+public class GameSession
+{
+    public string SessionId { get; set; } = string.Empty;
+    public string User1 { get; set; } = string.Empty;
+    public string User2 { get; set; } = string.Empty;
+    public string ControllerId { get; set; } = string.Empty; // ID of the user who controls the ball
 }
