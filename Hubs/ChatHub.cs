@@ -16,11 +16,10 @@ public class ChatHub : Hub
         _matchmakingService = matchmakingService;
     }
 
-    public async Task Register(string? preferredId = null)
-    {
         string result = _userStore.RegisterUser(Context.ConnectionId, preferredId);
         await Clients.Caller.SendAsync("UserRegistered", result);
         await NotifyUnreadCount(result);
+        await BroadcastUserList();
     }
 
     public async Task ChangeId(string newId)
@@ -36,6 +35,7 @@ public class ChatHub : Hub
         {
             await Clients.Caller.SendAsync("UserRegistered", newId);
             await NotifyUnreadCount(newId);
+            await BroadcastUserList();
         }
         else
         {
@@ -143,6 +143,13 @@ public class ChatHub : Hub
         }
         
         _userStore.RemoveUser(Context.ConnectionId);
+        await BroadcastUserList();
         await base.OnDisconnectedAsync(exception);
+    }
+
+    private async Task BroadcastUserList()
+    {
+        var users = _userStore.GetAllCustomIds();
+        await Clients.All.SendAsync("UpdateUserList", users);
     }
 }
