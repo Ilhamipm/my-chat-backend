@@ -45,6 +45,11 @@ public class UserStore
         return _connectionToUser.TryGetValue(connectionId, out var id) ? id : null;
     }
 
+    public List<string> GetAllCustomIds()
+    {
+        return _users.Keys.ToList();
+    }
+
     public void RemoveUser(string connectionId)
     {
         if (_connectionToUser.TryRemove(connectionId, out var customId))

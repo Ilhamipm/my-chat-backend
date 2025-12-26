@@ -21,6 +21,7 @@ public class ChatHub : Hub
         string result = _userStore.RegisterUser(Context.ConnectionId, preferredId);
         await Clients.Caller.SendAsync("UserRegistered", result);
         await NotifyUnreadCount(result);
+        await BroadcastOnlineUsers();
     }
 
     public async Task ChangeId(string newId)
@@ -36,6 +37,7 @@ public class ChatHub : Hub
         {
             await Clients.Caller.SendAsync("UserRegistered", newId);
             await NotifyUnreadCount(newId);
+            await BroadcastOnlineUsers();
         }
         else
         {
@@ -143,6 +145,13 @@ public class ChatHub : Hub
         }
         
         _userStore.RemoveUser(Context.ConnectionId);
+        await BroadcastOnlineUsers();
         await base.OnDisconnectedAsync(exception);
+    }
+
+    private async Task BroadcastOnlineUsers()
+    {
+        var users = _userStore.GetAllCustomIds();
+        await Clients.All.SendAsync("UpdateOnlineUsers", users);
     }
 }
