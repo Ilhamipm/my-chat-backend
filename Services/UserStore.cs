@@ -52,9 +52,4 @@ public class UserStore
             _users.TryRemove(customId, out _);
         }
     }
-
-    public List<string> GetAllCustomIds()
-    {
-        return _users.Keys.ToList();
-    }
 }
