@@ -45,6 +45,12 @@ public class ChatHub : Hub
         }
     }
 
+    public async Task UpdateProfile(string gender, string interest)
+    {
+        _userStore.UpdateProfile(Context.ConnectionId, gender, interest);
+        await Clients.Caller.SendAsync("ProfileUpdated", gender, interest);
+    }
+
     public async Task SendMessageToId(string targetId, string message)
     {
         string? targetConnectionId = _userStore.GetConnectionId(targetId);
@@ -97,7 +103,8 @@ public class ChatHub : Hub
 
     public async Task JoinMatchmaking()
     {
-        var result = _matchmakingService.AddToQueue(Context.ConnectionId);
+        var profile = _userStore.GetProfile(Context.ConnectionId);
+        var result = _matchmakingService.AddToQueue(Context.ConnectionId, profile);
         if (result.IsSearching)
         {
             await Clients.Caller.SendAsync("MatchmakingStatus", "Searching");
