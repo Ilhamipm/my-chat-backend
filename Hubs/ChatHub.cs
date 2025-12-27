@@ -176,7 +176,8 @@ public class ChatHub : Hub
         var allUsers = _userStore.GetAllUsers();
         var userStatuses = allUsers.Select(u => new {
             Id = u.CustomId,
-            Status = _matchmakingService.GetUserStatus(u.ConnectionId)
+            Status = _matchmakingService.GetUserStatus(u.ConnectionId),
+            Gender = _userStore.GetProfile(u.ConnectionId)?.Gender ?? "Non-binary"
         }).ToList();
         
         await Clients.All.SendAsync("UpdateOnlineUsers", userStatuses);
