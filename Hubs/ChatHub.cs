@@ -111,8 +111,11 @@ public class ChatHub : Hub
         }
         else if (result.PartnerId != null && result.Session != null)
         {
-            await Clients.Client(Context.ConnectionId).SendAsync("MatchFound", result.PartnerId, result.Session.ControllerId == Context.ConnectionId);
-            await Clients.Client(result.PartnerId).SendAsync("MatchFound", Context.ConnectionId, result.Session.ControllerId == result.PartnerId);
+            var myCustomId = _userStore.GetCustomId(Context.ConnectionId);
+            var partnerCustomId = _userStore.GetCustomId(result.PartnerId);
+            
+            await Clients.Client(Context.ConnectionId).SendAsync("MatchFound", partnerCustomId, result.Session.ControllerId == Context.ConnectionId);
+            await Clients.Client(result.PartnerId).SendAsync("MatchFound", myCustomId, result.Session.ControllerId == result.PartnerId);
         }
         await BroadcastOnlineUsers();
     }
@@ -153,6 +156,17 @@ public class ChatHub : Hub
         if (session != null && session.ControllerId == Context.ConnectionId)
         {
             await Clients.Client(session.User1 == Context.ConnectionId ? session.User2 : session.User1).SendAsync("UpdateSpeed", speed);
+        }
+    }
+
+    public async Task SendEmoticon(string emoticon)
+    {
+        var session = _matchmakingService.GetSession(Context.ConnectionId);
+        if (session != null && session.ControllerId != Context.ConnectionId)
+        {
+            // Only spectator can send emoticons to controller
+            var senderCustomId = _userStore.GetCustomId(Context.ConnectionId);
+            await Clients.Client(session.ControllerId).SendAsync("ReceiveEmoticon", emoticon, senderCustomId);
         }
     }
 
