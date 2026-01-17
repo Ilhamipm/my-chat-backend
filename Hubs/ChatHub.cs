@@ -71,6 +71,15 @@ public class ChatHub : Hub
         }
     }
 
+    public async Task SendMessageToGlobal(string message)
+    {
+        string? senderId = _userStore.GetCustomId(Context.ConnectionId);
+        if (senderId != null && !string.IsNullOrWhiteSpace(message))
+        {
+            await Clients.All.SendAsync("ReceiveGlobalMessage", senderId, message);
+        }
+    }
+
     public async Task FetchUnreadMessages()
     {
         string? userId = _userStore.GetCustomId(Context.ConnectionId);
