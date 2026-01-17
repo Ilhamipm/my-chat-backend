@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowMe - Premium Real-time Experience</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Firebase SDKs (Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main id="app">
+        <!-- Auth Section -->
+        <section id="auth-section" class="card fade-in">
+            <h1>Glow<span>Me</span></h1>
+            <p>Connect instantly. Find your match.</p>
+            <div class="auth-actions">
+                <button id="btn-register" class="btn-primary">Start Finding Matches</button>
+            </div>
+            <div id="registration-info" class="hidden">
+                <p>Establishing Secure Connection...</p>
+                <div class="loader"></div>
+            </div>
+        </section>
+
+        <!-- Main App Section (Full Screen) -->
+        <section id="chat-section" class="chat-scene hidden">
+            <header class="chat-scene-header">
+                <div class="user-info">
+                    <div class="avatar" id="my-avatar"></div>
+                    <div>
+                        <div class="user-id-wrapper">
+                            <h2 id="display-id">Loading...</h2>
+                            <span id="gender-symbol" class="gender-symbol-mini"></span>
+                        </div>
+                        <span class="status-badge" style="color:var(--success)">Online</span>
+                    </div>
+                </div>
+
+                <!-- Main Navigation Tabs -->
+                <nav class="main-nav">
+                    <button class="nav-tab active" data-tab="people">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 16v-4" />
+                            <path d="M12 8h.01" />
+                        </svg>
+                        Public
+                    </button>
+                    <button class="nav-tab" data-tab="matches">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                        People
+                    </button>
+                    <button class="nav-tab" data-tab="private" id="btn-tab-private">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        Chats <span id="private-badge" class="badge hidden">0</span>
+                    </button>
+                </nav>
+
+                <div class="header-actions">
+                    <button id="btn-settings" class="btn-icon" title="Profil & Settings">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+                        </svg>
+                    </button>
+                    <!-- Logout button hidden, auto-persistent -->
+                </div>
+            </header>
+
+            <div class="chat-scene-body">
+                <!-- VIEW 1: GLOBAL PUBLIC CHAT -->
+                <div id="view-people" class="view-section active">
+                    <div id="messages" class="messages-list-fullscreen">
+                        <!-- Messages go here -->
+                        <div class="empty-state">
+                            <p>Welcome to Global Lobby. Say Hi!</p>
+                        </div>
+                    </div>
+                    <div class="chat-input-wrapper">
+                        <div class="input-area">
+                            <input type="text" id="message-input" placeholder="Kirim pesan ke semua...">
+                            <button id="btn-send" class="btn-send">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white"
+                                    stroke-width="2">
+                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 2: PROFILES / MATCHES GRID -->
+                <div id="view-matches" class="view-section hidden" style="overflow-y:auto; padding: 20px;">
+                    <h3 style="margin-bottom:20px; color:var(--text-muted)">Online Users</h3>
+                    <div id="profiles-grid" class="profiles-grid">
+                        <!-- Profiles injected here -->
+                        <div class="loader-spinner"></div>
+                    </div>
+                </div>
+
+                <!-- VIEW 3: PRIVATE CHATS LIST -->
+                <div id="view-private" class="view-section hidden" style="display:flex;">
+                    <div class="private-chat-sidebar">
+                        <div class="search-bar-mini">
+                            <input type="text" placeholder="Search chats...">
+                        </div>
+                        <div id="private-conversations-list" class="conversations-list">
+                            <!-- List of active chats -->
+                        </div>
+                    </div>
+                    <div class="private-chat-area" id="private-chat-area">
+                        <div class="empty-state-private">
+                            <p>Select a user from the "People" tab to start chatting privately.</p>
+                        </div>
+                        <div id="private-messages-container" class="hidden"
+                            style="display:flex; flex-direction:column; height:100%;">
+                            <div class="private-header-mini">
+                                <span id="private-chat-partner-name">...</span>
+                                <button class="btn-tiny" id="btn-close-private">Close</button>
+                            </div>
+                            <div id="private-messages-list" class="messages-list-fullscreen" style="flex:1;"></div>
+                            <div class="chat-input-wrapper">
+                                <div class="input-area">
+                                    <input type="text" id="private-message-input" placeholder="Private message...">
+                                    <button id="btn-send-private" class="btn-send">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white"
+                                            stroke-width="2">
+                                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Game Overlay -->
+        <section id="game-overlay" class="game-view hidden">
+            <div class="game-header">
+                <div class="game-partner-info">
+                    <span style="opacity: 0.7; font-size: 0.85rem;">Playing with:</span>
+                    <span id="game-partner-name" style="font-weight: 600; margin-left: 8px;">-</span>
+                </div>
+                <button id="btn-exit-game" class="btn-tiny">Exit</button>
+                <div class="game-info">
+                    <span id="game-role">Spectating</span>
+                </div>
+            </div>
+            <div class="game-court">
+                <div id="game-ball" class="ball"></div>
+
+                <!-- Emoticon Notification (for controller) -->
+                <div id="emoticon-notification" class="emoticon-notification hidden"></div>
+
+                <!-- Emoticon Panel (for spectator) - Inside game court, left side -->
+                <div id="emoticon-panel" class="emoticon-panel-ingame hidden">
+                    <p
+                        style="margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; opacity: 0.9; text-align: center;">
+                        Reactions:</p>
+                    <div class="emoticon-grid-compact">
+                        <button class="emoticon-btn-compact" data-emoticon="😊" title="Senyum">😊</button>
+                        <button class="emoticon-btn-compact" data-emoticon="👍" title="Jempol Atas">👍</button>
+                        <button class="emoticon-btn-compact" data-emoticon="👎" title="Jempol Bawah">👎</button>
+                        <button class="emoticon-btn-compact" data-emoticon="💦" title="Muncrat">💦</button>
+                        <button class="emoticon-btn-compact" data-emoticon="😭" title="Menangis">😭</button>
+                        <button class="emoticon-btn-compact" data-emoticon="😫" title="Menderita">😫</button>
+                        <button class="emoticon-btn-compact" data-emoticon="😨" title="Takut">😨</button>
+                        <button class="emoticon-btn-compact" data-emoticon="😲" title="Terkejut">😲</button>
+                        <button class="emoticon-btn-compact" data-emoticon="😡" title="Marah">😡</button>
+                        <button class="emoticon-btn-compact" data-emoticon="✋" title="Stop">✋</button>
+                        <button class="emoticon-btn-compact" data-emoticon="❤️" title="Love">❤️</button>
+                        <button class="emoticon-btn-compact" data-emoticon="😍" title="Love di Mata">😍</button>
+                    </div>
+                </div>
+
+                <!-- Game Instructions (Right Side) -->
+                <div class="game-instructions">
+                    <div class="instructions-header">
+                        <h3>How to Play</h3>
+                        <button id="btn-toggle-lang" class="btn-lang-toggle" data-lang="en">🇮🇩 ID</button>
+                    </div>
+                    <div class="instructions-content">
+                        <!-- English Version -->
+                        <div id="instructions-en" class="instructions-text">
+                            <p><strong>For couples or strangers in long-distance relationships.</strong></p>
+                            <p>You masturbate together. Your right hand follows the ball's movement:</p>
+                            <ul>
+                                <li>🍆 <strong>Men:</strong> Stroke your penis following the ball</li>
+                                <li>🌸 <strong>Women:</strong> Touch your vagina following the ball</li>
+                            </ul>
+                            <p><strong>Rules:</strong></p>
+                            <ul>
+                                <li>One person controls the ball speed</li>
+                                <li>The other must follow exactly</li>
+                                <li>Ball moving = hand moving (same speed)</li>
+                                <li>Ball stopped = hand stopped</li>
+                            </ul>
+                            <p class="warning">⚠️ <strong>Don't cheat!</strong> Honesty is the core of this game.</p>
+                        </div>
+                        <!-- Indonesian Version -->
+                        <div id="instructions-id" class="instructions-text hidden">
+                            <p><strong>Untuk pasangan atau orang tak dikenal yang menjalin hubungan jarak jauh.</strong>
+                            </p>
+                            <p>Kalian saling masturbasi bersama. Tangan kanan mengikuti pergerakan bola:</p>
+                            <ul>
+                                <li>🍆 <strong>Pria:</strong> Mainkan penis mengikuti bola</li>
+                                <li>🌸 <strong>Wanita:</strong> Mainkan vagina mengikuti bola</li>
+                            </ul>
+                            <p><strong>Aturan:</strong></p>
+                            <ul>
+                                <li>Salah satu mengendali kecepatan bola</li>
+                                <li>Yang lain wajib mengikuti</li>
+                                <li>Bola bergerak = tangan bergerak (kecepatan sama)</li>
+                                <li>Bola diam = tangan diam</li>
+                            </ul>
+                            <p class="warning">⚠️ <strong>Jangan curang!</strong> Kejujuran adalah inti dari permainan
+                                ini.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="game-controls" class="game-controls hidden">
+                <p>Adjust Ball Speed:</p>
+                <input type="range" id="speed-slider" min="1" max="150" value="10">
+            </div>
+        </section>
+
+        <!-- User Selection Modal -->
+        <div id="user-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h3>Select Online Friend</h3>
+                    <button id="btn-close-modal" class="btn-icon">×</button>
+                </header>
+                <div id="modal-user-list" class="modal-scroll-list">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Online Users Modal -->
+        <div id="online-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h3>Online Players</h3>
+                    <button id="btn-close-online" class="btn-icon">×</button>
+                </header>
+                <div id="online-modal-list" class="modal-scroll-list">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </div>
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h3>Profile Settings</h3>
+                    <button id="btn-close-settings" class="btn-icon">×</button>
+                </header>
+                <div class="settings-body">
+                    <div class="setting-item">
+                        <label for="select-gender">I am a:</label>
+                        <select id="select-gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Non-binary">Non-binary</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="select-interest">Interested in:</label>
+                        <select id="select-interest">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Both">Both (Keduanya)</option>
+                        </select>
+                    </div>
+                    <button id="btn-save-settings" class="btn-primary" style="width: 100%; margin-top: 1.5rem;">Save
+                        Preferences</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
